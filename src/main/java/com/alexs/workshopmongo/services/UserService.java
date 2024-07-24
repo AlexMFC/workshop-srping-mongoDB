@@ -4,10 +4,10 @@ import java.util.List;
 import java.util.Optional;
 
 import org.springframework.beans.factory.annotation.Autowired;
-import org.springframework.data.mapping.AccessOptions.GetOptions;
 import org.springframework.stereotype.Service;
 
 import com.alexs.workshopmongo.domain.User;
+import com.alexs.workshopmongo.dto.UserDTO;
 import com.alexs.workshopmongo.exceptions.ObjectNotFoundException;
 import com.alexs.workshopmongo.repositories.UserRepository;
 
@@ -28,6 +28,14 @@ public class UserService {
 			throw new ObjectNotFoundException(String.format("Object %s not found", id));
 		}
 		return user;
+	}
+	
+	public User insert(User user) {
+		return repository.insert(user);
+	}
+	
+	public User fromDTO(UserDTO userDto) {
+		return new User(userDto.getId(), userDto.getName(), userDto.getEmail());
 	}
 	
 }
