@@ -1,22 +1,26 @@
 package com.alexs.workshopmongo.domain;
 
 import java.io.Serializable;
+import java.util.ArrayList;
+import java.util.List;
 import java.util.Objects;
 
 import org.springframework.data.annotation.Id;
+import org.springframework.data.mongodb.core.mapping.DBRef;
 import org.springframework.data.mongodb.core.mapping.Document;
-
-import jakarta.annotation.Generated;
 
 @Document(collection="user")
 public class User implements Serializable{
-
+	
+	@DBRef(lazy = true)
 	private static final long serialVersionUID = 1L;
 	
 	@Id
 	private String id;
 	private String name;
 	private String email;
+	
+	private List<Post> posts = new ArrayList<>();
 	
 	public User() {
 		
@@ -49,6 +53,14 @@ public class User implements Serializable{
 		return email;
 	}
 
+	public List<Post> getPosts() {
+		return posts;
+	}
+	
+	public void setPosts(List<Post> posts) {
+		this.posts = posts;
+	}
+	
 	public void setEmail(String email) {
 		this.email = email;
 	}
@@ -69,6 +81,6 @@ public class User implements Serializable{
 		User other = (User) obj;
 		return Objects.equals(id, other.id);
 	}
-	
+
 	
 }
