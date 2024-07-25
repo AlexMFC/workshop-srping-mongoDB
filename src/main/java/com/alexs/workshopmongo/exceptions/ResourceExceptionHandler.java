@@ -1,5 +1,7 @@
 package com.alexs.workshopmongo.exceptions;
 
+import java.util.NoSuchElementException;
+
 import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.ControllerAdvice;
@@ -16,4 +18,11 @@ public class ResourceExceptionHandler {
 		StandardError err = new StandardError(System.currentTimeMillis(), status.value(), "Not Found", error.getMessage(), request.getRequestURI());
 		return ResponseEntity.status(status).body(err);		
 	}
+	
+	@ExceptionHandler(NoSuchElementException.class)
+	public ResponseEntity<StandardError> postNotFound(NoSuchElementException error, HttpServletRequest request){
+		HttpStatus status = HttpStatus.NOT_FOUND;
+		StandardError err = new StandardError(System.currentTimeMillis(), status.value(), "Not Found", error.getMessage(), request.getRequestURI());
+		return ResponseEntity.status(status).body(err);		
+	}	
 }
