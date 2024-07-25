@@ -10,6 +10,7 @@ import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.*;
 import org.springframework.web.servlet.support.ServletUriComponentsBuilder;
 
+import com.alexs.workshopmongo.domain.Post;
 import com.alexs.workshopmongo.domain.User;
 import com.alexs.workshopmongo.dto.UserDTO;
 import com.alexs.workshopmongo.services.UserService;
@@ -62,4 +63,13 @@ public class UserResource implements Serializable {
 		service.update(user, id);
 		return ResponseEntity.noContent().build();
 	}
+
+	@GetMapping(value = "/{id}/posts")
+	public ResponseEntity<List<Post>> findPosts(@PathVariable String id){
+		User userObj = service.findByID(id);
+		return ResponseEntity.ok().body(userObj.getPosts());
+
+		
+	}
+
 }
