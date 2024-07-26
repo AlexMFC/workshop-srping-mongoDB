@@ -8,5 +8,8 @@ import com.alexs.workshopmongo.domain.Post;
 
 public interface PostRepository extends MongoRepository<Post, String>{
 	public List<Post> findAll();
+	
+	public List<Post> findByTitleContaining(String str);
+	
 
 }

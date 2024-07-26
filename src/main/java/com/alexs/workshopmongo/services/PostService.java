@@ -1,5 +1,6 @@
 package com.alexs.workshopmongo.services;
 
+import java.util.List;
 import java.util.Optional;
 
 import org.springframework.beans.factory.annotation.Autowired;
@@ -18,7 +19,10 @@ public class PostService {
 		Optional<Post> postOpt = repository.findById(id);
 		return postOpt.orElseThrow();
 	}
-
+	
+	public List<Post> findByTitle(String str){
+		return repository.findByTitleContaining(str);
+	}
 	
 }
 
