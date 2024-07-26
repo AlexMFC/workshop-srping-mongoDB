@@ -13,7 +13,7 @@ import com.alexs.workshopmongo.dto.CommentDTO;
 
 import jakarta.persistence.Id;
 
-@Document
+@Document(collection = "post")
 public class Post implements Serializable {
 	/**
 	 * 

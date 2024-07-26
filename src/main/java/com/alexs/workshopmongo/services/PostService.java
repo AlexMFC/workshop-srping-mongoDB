@@ -20,8 +20,8 @@ public class PostService {
 		return postOpt.orElseThrow();
 	}
 	
-	public List<Post> findByTitle(String str){
-		return repository.findByTitleContaining(str);
+	public List<Post> searchTitle(String str){
+		return repository.searchTitle(str);
 	}
 	
 }
